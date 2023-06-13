@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:onlineshoui/constants.dart';
 import 'package:onlineshoui/models/Product.dart';
-import 'package:onlineshoui/screens/details/components/cart_counter.dart';
+import 'package:onlineshoui/screens/details/components/add_to_cart.dart';
 import 'package:onlineshoui/screens/details/components/color_and_size.dart';
 import 'package:onlineshoui/screens/details/components/counter_with_fav_btn.dart';
 import 'package:onlineshoui/screens/details/components/description.dart';
@@ -50,31 +50,7 @@ class body extends StatelessWidget {
                       ColorAndSize(product: product),
                       Description(product: product),
                       const CounterWithFavBtn(),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: kDefaultPaddin
-                          ),
-                        child: Row(
-                          children: <Widget> [
-                            Container(
-                              height: 50,
-                              width: 58,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                border: Border.all(
-                                  color: product.color,
-                                )
-                              ),
-                              child: IconButton(
-                                icon: SvgPicture.asset(
-                                  "assets/icons/add_to_cart.svg"
-                                ),
-                                onPressed: () {} ,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                      AddToCart(product: product),
                     ],
                   ),
                 ),
