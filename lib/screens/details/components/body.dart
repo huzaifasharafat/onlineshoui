@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:onlineshoui/constants.dart';
 import 'package:onlineshoui/models/Product.dart';
 import 'package:onlineshoui/screens/details/components/add_to_cart.dart';
