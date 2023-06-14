@@ -1,24 +1,44 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshoui/constants.dart';
 import 'package:onlineshoui/screens/home/components/body.dart';
+import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<User?>(context);
+    bool loggedIn = user != null;
+
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(loggedIn),
       body: Body(),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(loggedIn) {
     return AppBar(
       backgroundColor: Colors.white,
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/back.svg"),
-        onPressed: () {},
-      ),
+      leadingWidth: 60,
+      leading: loggedIn ?
+      TextButton(
+          onPressed: () => auth.signOut(),
+          child: Text(
+              "sign out",
+              style: const TextStyle(
+              color: Colors.black26),
+          ),
+      )
+      :
+           TextButton(
+              onPressed: () =>  auth.signInAnonymously(),
+              child: Text("sign in",
+                style: const TextStyle(
+                    color: Colors.black26),
+              )
+          ),
       actions: <Widget>[
         IconButton(
           icon: SvgPicture.asset("assets/icons/search.svg",
