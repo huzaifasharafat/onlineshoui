@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshoui/constants.dart';
 import 'package:onlineshoui/screens/home/components/body.dart';
 import 'package:provider/provider.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 class HomeScreen extends StatelessWidget {
   final auth = FirebaseAuth.instance;
 
@@ -21,7 +23,7 @@ class HomeScreen extends StatelessWidget {
   AppBar buildAppBar(loggedIn) {
     return AppBar(
       backgroundColor: Colors.white,
-      leadingWidth: 60,
+      leadingWidth: 70,
       leading: loggedIn ?
       TextButton(
           onPressed: () => auth.signOut(),
@@ -33,7 +35,7 @@ class HomeScreen extends StatelessWidget {
       )
       :
            TextButton(
-              onPressed: () =>  auth.signInAnonymously(),
+              onPressed: () =>  signInWithGoogle(),
               child: Text("sign in",
                 style: const TextStyle(
                     color: Colors.black26),
@@ -60,4 +62,22 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+}
+
+
+Future<UserCredential> signInWithGoogle() async {
+  // Trigger the authentication flow
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithCredential(credential);
 }
