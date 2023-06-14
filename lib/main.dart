@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshoui/constants.dart';
 import 'package:onlineshoui/screens/home/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 void main() {
   runApp(MyApp());
