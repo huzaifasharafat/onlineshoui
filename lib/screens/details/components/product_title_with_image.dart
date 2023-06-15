@@ -58,7 +58,7 @@ class ProductTitleWithImage extends StatelessWidget {
                 ),
               ),
               SizedBox(width: kDefaultPaddin,),
-              Expanded(child: Image.asset(
+              Expanded(child: Image.network(
                 product.image,
                 fit: BoxFit.fitWidth,
               )

@@ -1,4 +1,7 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:string_to_hex/string_to_hex.dart';
 
 class Product {
   final String image, title, description;
@@ -13,6 +16,19 @@ class Product {
     required this.size,
     required this.color,
   });
+
+  factory Product.fromMap(Map data){
+
+    return Product(
+        id: data['id'],
+        image: data['image'],
+        title: data['title'],
+        price: data['price'],
+        description: data['description'],
+        size: data['size'],
+        color: data['color']
+    );
+  }
 }
 
 
@@ -23,15 +39,15 @@ List<Product> products = [
       price: 234,
       size: 12,
       description: dummyText,
-      image: "assets/images/bag_1.png",
-      color: Color(0xFF3D82AE)),
+      image: "https://firebasestorage.googleapis.com/v0/b/onlinestoreui.appspot.com/o/bag_1.png?alt=media&token=e01106a1-f08e-46f9-86e1-5a00c8d44769",
+      color: Color(int.parse('0xFF3D82AE'))),
   Product(
       id: 2,
       title: "Belt Bag",
       price: 234,
       size: 8,
       description: dummyText,
-      image: "assets/images/bag_2.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/onlinestoreui.appspot.com/o/bag_2.png?alt=media&token=6465d87e-11ab-4c82-ab28-84f632e5d8dd",
       color: Color(0xFFD3A984)),
   Product(
       id: 3,
@@ -39,7 +55,7 @@ List<Product> products = [
       price: 234,
       size: 10,
       description: dummyText,
-      image: "assets/images/bag_3.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/onlinestoreui.appspot.com/o/bag_3.png?alt=media&token=d04675e7-554b-4849-ba94-e3a957a1ca7b",
       color: Color(0xFF989493)),
   Product(
       id: 4,
@@ -47,7 +63,7 @@ List<Product> products = [
       price: 234,
       size: 11,
       description: dummyText,
-      image: "assets/images/bag_4.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/onlinestoreui.appspot.com/o/bag_4.png?alt=media&token=a2e7f007-ebbb-40f1-9624-cf33d950a8cb",
       color: Color(0xFFE6B398)),
   Product(
       id: 5,
@@ -55,7 +71,7 @@ List<Product> products = [
       price: 234,
       size: 12,
       description: dummyText,
-      image: "assets/images/bag_5.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/onlinestoreui.appspot.com/o/bag_5.png?alt=media&token=ba6a1146-9392-401c-9643-579c55910452",
       color: Color(0xFFFB7883)),
   Product(
     id: 6,
@@ -63,10 +79,10 @@ List<Product> products = [
     price: 234,
     size: 12,
     description: dummyText,
-    image: "assets/images/bag_6.png",
+    image: "https://firebasestorage.googleapis.com/v0/b/onlinestoreui.appspot.com/o/bag_6.png?alt=media&token=98186874-3dff-4cc0-9939-1c08e279cab1",
     color: Color(0xFFAEAEAE),
   ),
 ];
 
 String dummyText =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";
+    "dummy";
