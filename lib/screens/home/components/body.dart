@@ -4,10 +4,12 @@ import 'package:onlineshoui/models/Product.dart';
 import 'package:onlineshoui/screens/details/components/details_screen.dart';
 import 'package:onlineshoui/screens/home/components/categories.dart';
 import 'package:onlineshoui/screens/home/components/item_card.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var  products = Provider.of<List<Product>>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

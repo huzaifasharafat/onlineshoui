@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshoui/constants.dart';
+import 'package:onlineshoui/models/Product.dart';
+import 'package:onlineshoui/models/db.dart';
 import 'package:onlineshoui/screens/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -27,6 +29,13 @@ class MyApp extends StatelessWidget {
           value: FirebaseAuth.instance.authStateChanges(),
           initialData: null,
         ),
+
+        StreamProvider<List<Product>>.value(
+            value: DatabaseService().streamProducts(),
+
+            initialData: []
+        )
+    ,
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
